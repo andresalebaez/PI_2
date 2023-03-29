@@ -47,161 +47,23 @@ Para la realizacion de este ejercicio, se tomo como referencia la innovacion tec
 <img src="https://tse4.mm.bing.net/th?id=OIP.KXEsmh4_up4hSBqZ3uxWUgHaE8&pid=Api&P=0"  height=300>
 </p>
 
-<h1>Análisis Exploratorio de los datos (EDA)</h1>
+<h1>Informe de cada empresa</h1>
 
-Para poder analizar el mercado bursátil, utilizamos las siguientes herramientas:
+IBM: Durante gran parte del siglo XX, IBM fue líder en la industria de las computadoras, y desarrolló algunos de los primeros sistemas informáticos comerciales. En la década de 1980, la empresa se enfrentó a una competencia creciente en el mercado de las PC y tuvo que reinventarse para mantenerse relevante. Desde entonces, ha pasado por varios cambios en su modelo de negocio, centrándose en la fabricación de hardware y software empresarial, la computación en la nube y la inteligencia artificial.
 
-* Yahoo Finance
-* wikipedia
+En términos de bursatilidad, IBM es una empresa que cotiza en la bolsa de valores de Nueva York (NYSE) bajo el símbolo "IBM". La empresa ha experimentado altibajos en su historia bursátil, pero en general ha tenido un desempeño sólido a largo plazo. En los últimos años, IBM ha experimentado una disminución en sus ingresos y ganancias debido a la competencia en la nube y otros factores, lo que ha afectado su precio de las acciones. Sin embargo, la empresa ha estado trabajando en su transformación para seguir siendo competitiva en el mercado de tecnología y mantener su posición como líder en la industria. -
 
-Estas permitieron acceder a datos financieros que presentaremos en nuestro archivo realizado en Python*. 
+INTC: Es una empresa multinacional estadounidense que se dedica a la fabricación de procesadores y otros componentes electrónicos. Fue fundada en 1968 y ha sido uno de los principales fabricantes de chips de computadora en el mundo.
 
-Antes de analizar puntualmente cada empresa, nos parece importante estudiar el comportamiento del índice para conocer su tendencía y saber si vale la pena invertir en cualquiera de las compañías que lo componen por supuesto con su previo análisis.
-
-* Histórico correspondiente al precio de cierre del índice ***S&P500*** (1990 - 2023) 
-
-```shell
-empresas = ['GSPC']
-
-recolector =[]
-for nemo in empresas:
-    ticker =yf.Ticker(nemo)
-    px = ticker.history(start="2000-01-01", end="2023-03-27")['Close']
-    px.name = nemo
-
-    recolector += [px]
-
-precios = pd.concat(recolector, axis=1)
-```
-**Nota:** Este código guarda en un Data Frame los precios de cierre para el índice bursátil en un periodo del año 2000 al 2023
-
-<p align="center">
-<img src="https://github.com/csantamaria89/Proyecto-Individual-II/blob/main/Im%C3%A1genes/GSPC1.png"  height=500>
-</p>
-
-En la imágen anterior, se puede evidenciar la tendencia alsista 📈 del índice *S&P500* a lo largo del tiempo, también se puede observar hitos importantes que describen tiempos de crisis. 
-
-- La recesión económica de 2008, conocida como la Gran Recesión, fue la fuerte caída de la actividad económica que comenzó en diciembre de 2007 y duró hasta junio de 2009.
-- Crisis económica por el Corona Virus.
-- Repercusión de la Pnademia, Inflación, Guerra.
-
-En general, el comportamiento del índice nos puede suponer una ventaja de inversión si analisamos el entorno y las crisis pues la inversion puede ser en cuanto a tendencias de crecimiento o caidas.
+En su historia bursátil, Intel ha experimentado altibajos. En las décadas de 1990 y 2000, la empresa tuvo un fuerte crecimiento debido al aumento de la demanda de computadoras personales y la innovación en el diseño de chips. En la última década, la empresa ha enfrentado mayores desafíos, como la competencia de fabricantes de chips como AMD, y la disminución de la demanda de computadoras personales debido al aumento de los dispositivos móviles. En los últimos años, Intel ha estado trabajando en su transformación para diversificar su negocio y adaptarse a las tendencias cambiantes de la tecnología. La empresa ha invertido en áreas como la inteligencia artificial, la informática en la nube y los vehículos autónomos. -
 
 
-<h1>Grupo Inversión 1</h1>
+MSFT: La empresa MSFT es conocida como Microsoft Corporation y es una de las empresas más grandes de tecnología del mundo. Fue fundada en 1975 por Bill Gates y Paul Allen y ha sido líder en la industria de software y tecnología desde entonces.
 
-<p align="center">
-<img src="https://github.com/csantamaria89/Proyecto-Individual-II/blob/main/Im%C3%A1genes/analisis1.png"  height=100>
-</p>
+En términos de historia, Microsoft ha experimentado un crecimiento constante desde sus primeros días como una pequeña empresa de software hasta convertirse en una de las empresas más valiosas del mundo. A lo largo de los años, ha lanzado muchos productos exitosos, como Windows, Office y Xbox, y ha adquirido otras empresas importantes como LinkedIn y GitHub.
 
-* Aplicamos el siguiente código para poder visualizar el valor de cierre de cada acción seleccionada durante un periodo establecido:
+En cuanto a la bursatilidad de la empresa, Microsoft cotiza en la bolsa de valores NASDAQ y su símbolo bursátil es MSFT. La empresa ha sido muy rentable en los últimos años, lo que ha llevado a un aumento en su valor de mercado. Actualmente, es una de las empresas más valiosas del mundo, con una capitalización de mercado de más de 2 billones de dólares estadounidenses.
 
-```shell
-empresas = ['AMZN','AAPL','INTC','MSFT','NFLX']
+Los inversores interesados en la compra de acciones de Microsoft deben considerar cuidadosamente los factores que podrían afectar el desempeño de la empresa, como la competencia en la industria tecnológica, los cambios en la demanda del mercado y la capacidad de la empresa para mantenerse a la vanguardia de la innovación tecnológica.
 
-recolector =[]
-for nemo in empresas:
-    ticker =yf.Ticker(nemo)
-    px = ticker.history(start="2000-01-01", end="2023-03-27")['Close']
-    px.name = nemo
 
-    recolector += [px]
-
-precios = pd.concat(recolector, axis=1)
-```
-**Nota:** Este código guarda en un Data Frame los precios de cierre de las diferentes acciones en un periodo del año 2000 al 2023
-
-Con el siguiente código obtenemos el precio de cierre de la acción del día anterior su valor y porcentaje de ganancia.
-
-```shell
-import pandas as pd
-import requests
-
-# API key de Alpha Vantage
-api_key = "YOUR KEY HERE"
-
-# Símbolo de la acción que queremos obtener
-symbol = "MCD"
-
-# URL para obtener los datos de la acción
-url = f"https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol={symbol}&apikey={api_key}"
-
-# Hacemos la petición HTTP GET
-response = requests.get(url)
-
-# Obtenemos los datos en formato JSON
-data = response.json()
-
-# Creamos un diccionario con los valores que queremos
-stock_info = {
-    "Last Price": data["Global Quote"]["05. price"],
-    "Change": data["Global Quote"]["09. change"],
-    "% Change": data["Global Quote"]["10. change percent"]
-}
-
-# Creamos el DataFrame
-df = pd.DataFrame(stock_info, index=[0])
-df.to_csv("Alpha_McDonalds.csv", index=False)
-```
-**Nota:** El código anterior se basa en la API de Alpha Vantage, para ello directamente en su plataforma se debe crear un Key para que permita el uso del código.
-
-- El análisis de estas acciones corresponde al sector de *Tecnología de la información*, *Consumo ocasional* y *Servicios de comunicación* 
-<p align="center">
-<img src="https://github.com/csantamaria89/Proyecto-Individual-II/blob/main/Im%C3%A1genes/inversion1.png"  height=500>
-</p>
-
-De acuerdo con la imágen anterior podemos concluir que para las empresas analisadas, se evidencia que les afecto las crisis mencionadas anteriormente. Sin embargo, todas han tenido un crecimiento o por lo menos se han logrado estabilizar con las diferentes coyunturas que vive del país.
-
-🚨**Netflix**: Puntualmente vemos un caso de tendencia bajista 📉 a finales del 2021 y 2022.
-
-<p align="center">
-<img src="https://github.com/csantamaria89/Proyecto-Individual-II/blob/main/Im%C3%A1genes/Tnetflix.png"  height=300>
-</p>
-
-Las acciones de Netflix se desplomaron un 35% después de que la empresa revelara una fuerte caída en los suscriptores, y advirtiera que millones más están listos para abandonar el servicio.
-- La compañía perdió más de US$50.000 millones de su valor en el mercado, ya que los expertos indicaron que enfrenta dificultades para volver a la normalidad.
-- Netflix afronta una intensa competencia por parte de sus rivales y también se vio afectada después de que subió los precios y se fue de Rusia.
-- Impulsar el crecu¿imiento de clientes con nuevo servicio gratuito con publicidad.
-- Se estima que más de 100 millones de hogares utilizan su servicio de manera ilegal.</br>
-***fuente:***("https://www.bbc.com/mundo/noticias-61182426")
-
-<h1>Grupo Inversión 2</h1>
-
-<p align="center">
-<img src="https://github.com/csantamaria89/Proyecto-Individual-II/blob/main/Im%C3%A1genes/analisis2.png"  height=100>
-</p>
-
-* Repetimos el proceso del grupo anterior para ver el histórico del precio de cierre para este grupo de compañias.
-
-El análisis de estas acciones corresponde al sector del Consumo Ocasional, Productos básicos de consumo y Salud
-<p align="center">
-<img src="https://github.com/csantamaria89/Proyecto-Individual-II/blob/main/Im%C3%A1genes/inversion2_1.png"  height=500>
-</p>
-
-Con en análisis del gráfico, podemos identificar que a la empresa de Walmart (Productos básicos de consumo) y Moderna (Salud) no fueron afectadas por la pandemia y que por el contrario han tenido una tendencia alsista 📈 lo que representa un muy buen escenario para invertir.
-
-<h1>KPIs Conclusiones</h1>
-
-Con el análisis previo y el perfil de inversion conservador, podemos identificar fácilmente los acciones por las cuales podríamos invertir. A continuación se presentaran los siguientes KPIs para poder conluir que alternativas tenemos para invertir a corto o largo plazo.
-
-<p align="center">
-<img src="https://github.com/csantamaria89/Proyecto-Individual-II/blob/main/Im%C3%A1genes/kpis.png"  height=400>
-</p>
-
-***KPIs***
-
-1. **Market Cap** (Capitalización del Mercado): Valor total de las acciones en circulación de una empresa. </br>
-
-    Se calcula multiplicando el número de acciones en circulación sw una empresa por el precio actual de la acción. </br>
-    
-    CAP = Número de Acciones x Precio de la Acción </BR>
-    
-    El Market cap es un dato importante tanto para conocer el tamaño de la empresa como múltiplo para calcular diferentes ratios financieros. Además, se           utiliza esta cifra para determinar el tamaño de una empresa en lugar de usar el total de las ventas o los activos totales.</BR>
-    
-2. **Earnings per Share** EPS (Beneficio por Scción): Son los beneficios que le corresponden al accionista por cada acción.
-
-    EPS básico = (Beneficio neto-Dividendos de acciones preferentes)/(Media ponderada del número de acciones ordinarias en circulación)
-    
-    **Es necesario excluir la parte correspondiente a los accionistas preferentes.
-    
-3. **Range (52 Week)** Este indicador nos muestra el valor mínimo y el máximo del precio de cierre de la acción durante las últimas 52 semanas. Con este valor podemos compararlo con el precio de cierre actual y tener un indicador que nos alerte si el precio de cierre actual está más cerca del valor negativo o incluso ha sobrepasado ese umbral o viceversa.
